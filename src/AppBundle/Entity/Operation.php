@@ -43,12 +43,12 @@ class Operation
     private $date;
 
     /**
-     * @var \AppBundle\Entity\TypeOperation
+     * @var \AppBundle\Entity\ModeOperation
      *
-     * @ORM\ManyToOne(targetEntity="TypeOperation")
-     * @ORM\JoinColumn(name="typeOperationId", referencedColumnName="id")
+     * @ORM\ManyToOne(targetEntity="ModeOperation")
+     * @ORM\JoinColumn(name="modeOperationId", referencedColumnName="id")
      */
-    private $typeOperation;
+    private $modeOperation;
 
     /**
      * @var \AppBundle\Entity\Facture
@@ -142,27 +142,27 @@ class Operation
     }
 
     /**
-     * Set typeOperation
+     * Set modeOperation
      *
-     * @param \AppBundle\Entity\TypeOperation $typeOperation
+     * @param \AppBundle\Entity\ModeOperation $modeOperation
      *
      * @return Operation
      */
-    public function setTypeOperation(\AppBundle\Entity\TypeOperation $typeOperation = null)
+    public function setModeOperation(\AppBundle\Entity\ModeOperation $modeOperation = null)
     {
-        $this->typeOperation = $typeOperation;
+        $this->modeOperation = $modeOperation;
 
         return $this;
     }
 
     /**
-     * Get typeOperation
+     * Get modeOperation
      *
-     * @return \AppBundle\Entity\TypeOperation
+     * @return \AppBundle\Entity\ModeOperation
      */
-    public function getTypeOperation()
+    public function getModeOperation()
     {
-        return $this->typeOperation;
+        return $this->modeOperation;
     }
 
     /**

@@ -5,12 +5,12 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * TypeOperation
+ * ModeOperation
  *
  * @ORM\Table(name="type_operation")
  * @ORM\Entity
  */
-class TypeOperation
+class ModeOperation
 {
     /**
      * @var integer
@@ -44,7 +44,7 @@ class TypeOperation
      *
      * @param string $designation
      *
-     * @return TypeOperation
+     * @return ModeOperation
      */
     public function setDesignation($designation)
     {

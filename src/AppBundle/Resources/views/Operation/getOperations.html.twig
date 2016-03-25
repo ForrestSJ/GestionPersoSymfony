@@ -1,14 +1,23 @@
 {% extends 'base.html.twig' %}
 
 {% block content %}
-Liste operations<br>
-    <table>
-    {% for entityOperation in entitiesOperation %}
+    <a href="{{ path('operation_create') }}">Ajouter opération</a><br>
+
+    Liste operations<br>
+    <table border="1">
         <tr>
-            <td>{{ entityOperation.date }}</td>
-            <td>{{ entityOperation.lieu }}</td>
-            <td>{{ entityOperation.montant }}</td>
+            <th>date</th>
+            <th>lieu</th>
+            <th>montant</th>
+            <th>actions</th>
         </tr>
-    {% endfor %}
+        {% for entityOperation in entitiesOperation %}
+            <tr>
+                <td>{{ entityOperation.date|date("d/m/Y") }}</td>
+                <td>{{ entityOperation.lieu }}</td>
+                <td>{{ entityOperation.montant }}</td>
+                <td><a href="{{ path('operation_edit/{id}', {'id' : entityOperation.id}) }}">modifier</a></td>
+            </tr>
+        {% endfor %}
     </table>
 {% endblock %}

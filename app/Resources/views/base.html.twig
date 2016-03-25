@@ -23,6 +23,17 @@
 <body>
 <table border="1" width="100%">
     <tr>
+        <td width="150px">logo</td>
+        <td>
+            {% for flashMessage in app.session.flashbag.get('error-toastr') %}
+                {{ flashMessage|raw }}
+            {% endfor %}
+            {% for flashMessage in app.session.flashbag.get('success-toastr') %}
+                {{ flashMessage|raw }}
+            {% endfor %}
+        </td>
+    </tr>
+    <tr>
         <td width="150px">{% include "menu.html.twig" %}</td>
         <td>{% block content %}{% endblock %}</td>
     </tr>
