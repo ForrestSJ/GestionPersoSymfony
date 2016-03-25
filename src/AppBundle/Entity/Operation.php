@@ -5,12 +5,12 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Transaction
+ * Operation
  *
- * @ORM\Table(name="transaction")
+ * @ORM\Table(name="operation")
  * @ORM\Entity
  */
-class Transaction
+class Operation
 {
     /**
      * @var integer
@@ -43,17 +43,17 @@ class Transaction
     private $date;
 
     /**
-     * @var \AppBundle\Entity\TypeTransaction
+     * @var \AppBundle\Entity\TypeOperation
      *
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\TypeTransaction")
-     * @ORM\JoinColumn(name="typeTransactionId", referencedColumnName="id")
+     * @ORM\ManyToOne(targetEntity="TypeOperation")
+     * @ORM\JoinColumn(name="typeOperationId", referencedColumnName="id")
      */
-    private $typeTransaction;
+    private $typeOperation;
 
     /**
      * @var \AppBundle\Entity\Facture
      *
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Facture", inversedBy="transactions")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Facture", inversedBy="operations")
      * @ORM\JoinColumn(name="factureId", referencedColumnName="id")
      */
     private $facture;
@@ -74,7 +74,7 @@ class Transaction
      *
      * @param string $lieu
      *
-     * @return Transaction
+     * @return Operation
      */
     public function setLieu($lieu)
     {
@@ -98,7 +98,7 @@ class Transaction
      *
      * @param string $montant
      *
-     * @return Transaction
+     * @return Operation
      */
     public function setMontant($montant)
     {
@@ -122,7 +122,7 @@ class Transaction
      *
      * @param \DateTime $date
      *
-     * @return Transaction
+     * @return Operation
      */
     public function setDate($date)
     {
@@ -142,27 +142,27 @@ class Transaction
     }
 
     /**
-     * Set typeTransaction
+     * Set typeOperation
      *
-     * @param \AppBundle\Entity\TypeTransaction $typeTransaction
+     * @param \AppBundle\Entity\TypeOperation $typeOperation
      *
-     * @return Transaction
+     * @return Operation
      */
-    public function setTypeTransaction(\AppBundle\Entity\TypeTransaction $typeTransaction = null)
+    public function setTypeOperation(\AppBundle\Entity\TypeOperation $typeOperation = null)
     {
-        $this->typeTransaction = $typeTransaction;
+        $this->typeOperation = $typeOperation;
 
         return $this;
     }
 
     /**
-     * Get typeTransaction
+     * Get typeOperation
      *
-     * @return \AppBundle\Entity\TypeTransaction
+     * @return \AppBundle\Entity\TypeOperation
      */
-    public function getTypeTransaction()
+    public function getTypeOperation()
     {
-        return $this->typeTransaction;
+        return $this->typeOperation;
     }
 
     /**
@@ -170,7 +170,7 @@ class Transaction
      *
      * @param \AppBundle\Entity\Facture $facture
      *
-     * @return Transaction
+     * @return Operation
      */
     public function setFacture(\AppBundle\Entity\Facture $facture = null)
     {

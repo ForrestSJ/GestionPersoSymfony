@@ -43,15 +43,15 @@ class Facture
     private $date;
 
     /**
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Transaction", mappedBy="facture")
+     * @ORM\OneToMany(targetEntity="Operation", mappedBy="facture")
      */
-    private $transactions;
+    private $operations;
     /**
      * Constructor
      */
     public function __construct()
     {
-        $this->transactions = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->operations = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -137,36 +137,36 @@ class Facture
     }
 
     /**
-     * Add transaction
+     * Add operation
      *
-     * @param \AppBundle\Entity\Transaction $transaction
+     * @param \AppBundle\Entity\Operation $operation
      *
      * @return Facture
      */
-    public function addTransaction(\AppBundle\Entity\Transaction $transaction)
+    public function addOperation(\AppBundle\Entity\Operation $operation)
     {
-        $this->transactions[] = $transaction;
+        $this->operations[] = $operation;
 
         return $this;
     }
 
     /**
-     * Remove transaction
+     * Remove operation
      *
-     * @param \AppBundle\Entity\Transaction $transaction
+     * @param \AppBundle\Entity\Operation $operation
      */
-    public function removeTransaction(\AppBundle\Entity\Transaction $transaction)
+    public function removeOperation(\AppBundle\Entity\Operation $operation)
     {
-        $this->transactions->removeElement($transaction);
+        $this->operations->removeElement($operation);
     }
 
     /**
-     * Get transactions
+     * Get operations
      *
-     * @return \Doctrine\Common\Collections\Collection
+     * @return \AppBundle\Entity\Operation[]
      */
-    public function getTransactions()
+    public function getOperations()
     {
-        return $this->transactions;
+        return $this->operations;
     }
 }
