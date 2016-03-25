@@ -54,7 +54,7 @@ class Operation
      * @var \AppBundle\Entity\Facture
      *
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Facture", inversedBy="operations")
-     * @ORM\JoinColumn(name="factureId", referencedColumnName="id")
+     * @ORM\JoinColumn(name="factureId", referencedColumnName="id", nullable=true)
      */
     private $facture;
 

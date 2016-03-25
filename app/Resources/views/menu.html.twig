@@ -1,0 +1,170 @@
+<a href="{{ path('operation_liste') }}">Liste des operations</a>
+{#<nav class="navbar navbar-default navbar-fixed-top" role="navigation">#}
+  {#<div class="container">#}
+    {#<!-- Brand and toggle get grouped for better mobile display -->#}
+    {#<div class="navbar-header">#}
+      {#<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">#}
+        {#<span class="sr-only">Toggle navigation</span>#}
+        {#<span class="icon-bar"></span>#}
+        {#<span class="icon-bar"></span>#}
+        {#<span class="icon-bar"></span>#}
+      {#</button>#}
+      {#<a class="navbar-brand" href="{{ path('Accueil') }}"></a>#}
+    {#</div>#}
+
+    {#<!-- Collect the nav links, forms, and other content for toggling -->#}
+    {#<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">#}
+      {#<ul class="nav navbar-nav">#}
+          {#{% if is_granted('ROLE_GALILEOProspectListe') %}#}
+        {#<li class="dropdown#}
+        {#{{#}
+        {#(app.request.attributes.get( '_route' ) starts with 'groupe_')#}
+        {#? 'active'#}
+        {#}}">#}
+          {#<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-briefcase"></i><span class="visible-navbar-prospect"> Prospect </span><b class="caret"></b></a>#}
+          {#<ul class="dropdown-menu">#}
+            {#<li class="disabled"><a href="#">Tableau de bord</a></li>#}
+            {#<li class="active"><a href="{{ path('prospects_liste') }}">Mono-Site</a></li>#}
+            {#<li class="{{ (app.request.attributes.get( '_route' ) starts with 'groupe_') ? 'active' }}">#}
+              {#<a href="{{ path('groupe_groupes_liste') }}">Liste</a>#}
+            {#</li>#}
+            {#<li class="disabled"><a href="#">Voir les clients</a></li>#}
+            {#<li class="disabled"><a href="#">Prospects en attente d'affectation</a></li>#}
+            {#<li class="disabled"><a href="#">Contact / RDV</a></li>#}
+          {#</ul>#}
+        {#</li>#}
+          {#{% endif %}#}
+        {#{% if is_granted('ROLE_GALILEOPropaleListe') %}#}
+        {#<li class="dropdown#}
+        {#{{#}
+        {#(app.request.attributes.get( '_route' ) starts with 'propale_')#}
+        {#? 'active'#}
+        {#}}#}
+        {#">#}
+          {#<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-list-alt"></i><span class="visible-navbar-propale">  Propositions Commerciales </span><b class="caret"></b></a>#}
+          {#<ul class="dropdown-menu">#}
+            {#<li class="{{ (app.request.attributes.get( '_route' ) starts with 'propale_getPropales') ? 'active' }}"><a href="{{ path('propale_getPropales') }}">Gestion des propositions commerciales</a></li>#}
+            {#<li class="{{ (app.request.attributes.get( '_route' ) ends with 'RevuesDeContrat') ? 'active' }}"><a href="{{ path('propale_getRevuesDeContrat') }}">Gestion des revues de contrats</a></li>#}
+            {#<li class="disabled"><a href="#">Gestion des éditions de contrats</a></li>#}
+            {#<li class="disabled"><a href="#">Contrats à échéances</a></li>#}
+          {#</ul>#}
+        {#</li>#}
+        {#{% endif %}#}
+        {#{% if is_granted('ROLE_GALILEOReferentielsAcces') %}#}
+        {#<li class="dropdown#}
+        {#{{#}
+        {#(app.request.attributes.get( '_route' ) starts with 'utilisateurs_') or#}
+        {#(app.request.attributes.get( '_route' ) starts with 'provenance_') or#}
+        {#(app.request.attributes.get( '_route' ) starts with 'cout_') or#}
+        {#(app.request.attributes.get( '_route' ) starts with 'garantie_') or#}
+        {#(app.request.attributes.get( '_route' ) starts with 'margeCible_')or#}
+        {#(app.request.attributes.get( '_route' ) starts with 'offre_standard_') or#}
+        {#(app.request.attributes.get( '_route' ) starts with 'couts_fourniture') or#}
+        {#(app.request.attributes.get( '_route' ) starts with 'service_services') or#}
+        {#(app.request.attributes.get( '_route' ) starts with 'validitePropale_') or#}
+        {#(app.request.attributes.get( '_route' ) starts with 'affectationPortefeuille_') or#}
+        {#(app.request.attributes.get( '_route' ) starts with 'affectationSecteur_') or#}
+        {#(app.request.attributes.get( '_route' ) starts with 'deltaMarge_') or#}
+        {#(app.request.attributes.get( '_route' ) starts with 'grille_tarifaire_')#}
+        {#? 'active'#}
+        {#}}#}
+        {#">#}
+          {#<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-cog"></i><span class="visible-navbar-admin"> Administration </span><b class="caret"></b></a>#}
+          {#<ul class="dropdown-menu">#}
+            {#<li class="{{ (app.request.attributes.get( '_route' ) starts with 'utilisateurs_') ? 'active' }}">#}
+              {#<a href="{{ path('utilisateurs_utilisateursListe') }}">Gestion des utilisateurs</a>#}
+            {#</li>#}
+            {#<li class="{{ (app.request.attributes.get( '_route' ) starts with 'provenance_') ? 'active' }}">#}
+              {#<a href="{{ path("provenance_provenances") }}">Gestion des provenances</a>#}
+            {#</li>#}
+            {#<li class="{{ (app.request.attributes.get( '_route' ) starts with 'grille_tarifaire_') ? 'active' }}">#}
+              {#<a href="{{ path("grille_tarifaire_liste") }}">Gestion des grilles tarifaires</a>#}
+            {#</li>#}
+            {#<li class="{{ (app.request.attributes.get( '_route' ) starts with 'offre_standard_') ? 'active' }}">#}
+              {#<a href="{{ path("offre_standard_offres") }}">Gestion des offres standard</a>#}
+            {#</li>#}
+             {#<li class="{{ (app.request.attributes.get( '_route' ) starts with 'indice_') ? 'active' }}">#}
+              {#<a href="{{ path("indice_indices") }}">Gestion des indices</a>#}
+            {#</li>#}
+            {#<li class="{{ (app.request.attributes.get( '_route' ) starts with 'cout_transport') ? 'active' }}">#}
+              {#<a href="{{ path("cout_transport") }}">Gestion des couts transport</a>#}
+            {#</li>#}
+            {#<li class="{{ (app.request.attributes.get( '_route' ) starts with 'cout_distribution') ? 'active' }}">#}
+              {#<a href="{{ path("cout_distribution") }}">Gestion des couts de distribution</a>#}
+            {#</li>#}
+            {#<li class="{{ (app.request.attributes.get( '_route' ) starts with 'couts_fourniture') ? 'active' }}">#}
+              {#<a href="{{ path("couts_fourniture_part_appro") }}">Gestion des coûts de fourniture</a>#}
+            {#</li>#}
+            {#<li class="{{ (app.request.attributes.get( '_route' ) starts with 'service_') ? 'active' }}">#}
+              {#<a href="{{ path("service_services") }}">Gestion des catalogues de services</a>#}
+            {#</li>#}
+            {#<li class="{{ (app.request.attributes.get( '_route' ) starts with 'garantie_') ? 'active' }}">#}
+              {#<a href="{{ path("garantie_garantie") }}">Gestion des garanties</a>#}
+            {#</li>#}
+            {#<li class="{{ (app.request.attributes.get( '_route' ) starts with 'margeCible_') ? 'active' }}">#}
+              {#<a href="{{ path("margeCible_editMarges") }}">Gestion des marges</a>#}
+            {#</li>#}
+            {#<li class="{{ (app.request.attributes.get( '_route' ) starts with 'deltaMarge_') ? 'active' }}">#}
+              {#<a href="{{ path("deltaMarge_editDeltaMarge") }}">Gestion des delta de marges</a>#}
+            {#</li>#}
+            {#<li class="{{ (app.request.attributes.get( '_route' ) starts with 'validitePropale_') ? 'active' }}">#}
+              {#<a href="{{ path("validitePropale_editValiditePropale") }}">Gestion de durée de validité des propales</a>#}
+            {#</li>#}
+            {#<li class="disabled {{ (app.request.attributes.get( '_route' ) starts with 'marge_') ? 'active' }}">#}
+              {#<a href="{{ path("marge_marge") }}">Gestion des marges (OLD)</a>#}
+            {#</li>#}
+            {#<li class="{{ (app.request.attributes.get( '_route' ) starts with 'affectationPortefeuille_') ? 'active' }}">#}
+              {#<a href="{{ path("affectationPortefeuille_editAffectationPortefeuille") }}">Affectation de portefeuille</a>#}
+            {#</li>#}
+            {#<li class="{{ (app.request.attributes.get( '_route' ) starts with 'affectationSecteur_') ? 'active' }}">#}
+              {#<a href="{{ path("affectationSecteur_editAffectationSecteur") }}">Affectation de secteur</a>#}
+            {#</li>#}
+          {#</ul>#}
+        {#</li>#}
+        {#{% endif %}#}
+
+        {#{% if is_granted('ROLE_GALILEOParametresAcces') %}#}
+        {#<li class="dropdown {{#}
+            {#(app.request.attributes.get( '_route' ) starts with 'promotion_') or#}
+            {#(app.request.attributes.get( '_route' ) starts with 'pieces_')#}
+            {#? 'active'#}
+        {#}}">#}
+          {#<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-th-list"></i><span class="visible-navbar-param"> Paramétrage </span><b class="caret"></b></a>#}
+          {#<ul class="dropdown-menu">#}
+            {#<li class="disabled"><a href="#">Paramétrer la délégation</a></li>#}
+            {#<li class="{{ (app.request.attributes.get( '_route' ) starts with 'pieces_') ? 'active' }}">#}
+              {#<a href="{{ path('pieces_justificatives') }}">Gestion des pièces justificatives</a>#}
+            {#</li>#}
+            {#<li class="{{ (app.request.attributes.get( '_route' ) starts with 'promotion_') ? 'active' }}">#}
+              {#<a href="{{ path('promotion_getPromotions') }}">Gestion des codes avantage</a>#}
+            {#</li>#}
+            {#<li class="{{ (app.request.attributes.get( '_route' ) starts with 'statut_propale_') ? 'active' }}">#}
+              {#<a href="{{ path('statut_propale_liste') }}">Affichage des statuts de propales</a>#}
+            {#</li>#}
+          {#</ul>#}
+        {#</li>#}
+        {#{% endif %}#}
+      {#</ul>#}
+      {#<ul class="nav navbar-nav navbar-right">#}
+        {#<li class="dropdown panier">#}
+          {#<a href="#" class="dropdown-toggle panierA" data-toggle="dropdown"><i class="glyphicon glyphicon-th"></i><span class="visible-navbar-panier"> Panier </span><b class="caret"></b></a>#}
+          {#<ul class="dropdown-menu panier">#}
+            {#<li><a href="#">21175 ENTREPRISE T4 (PRO)</a></li>#}
+            {#<li><a href="#">15229 MOUFFOK (PRO)</a></li>#}
+            {#<li><a href="#">3037 A.F.L THILLOIS (PRO)</a></li>#}
+            {#<li><a href="#">5006 CHEZ ALBERT (PRO)</a></li>#}
+            {#<li><a href="#">21181 GARANTIE TEST (PRO)</a></li>#}
+          {#</ul>#}
+        {#</li>#}
+        {#<li class="dropdown">#}
+          {#<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-user"></i><span class="visible-navbar-lastname"> #}{# {{app.user.civilite.libelleCivilite}} {{app.user.name}} #}{# {{app.user.username}} </span><span class="visible-navbar-firstname">#}{# {{app.user.firstname}} #}{#</span><b class="caret"></b></a>#}
+          {#<ul class="dropdown-menu">#}
+            {#<li class="disabled"><a href="#"><i class="glyphicon glyphicon-info-sign"></i> Mon Compte</a></li>#}
+            {#<li><a href="{{ path('attineos_accessgate_auth_logout') }}"><i class="glyphicon glyphicon-off"></i> Déconnexion</a></li>#}
+            {#<li class="disabled"><a href="{{ path('Apropos') }}"><i class="glyphicon glyphicon-info-sign"></i> A propos</a></li>#}
+          {#</ul>#}
+        {#</li>#}
+      {#</ul>#}
+    {#</div><!-- /.navbar-collapse -->#}
+  {#</div><!-- /.container-fluid -->#}
+{#</nav>#}

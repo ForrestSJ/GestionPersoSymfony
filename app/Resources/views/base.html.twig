@@ -1,13 +1,94 @@
+{#{% spaceless %}#}
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8" />
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
-        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
-    </head>
-    <body>
-        {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
-    </body>
+<head>
+    <noscript>
+        {#<META HTTP-EQUIV="Refresh" CONTENT="0;URL={{ path('Accueil') }}">#}
+    </noscript>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>{% block title %}Gestion Perso{% endblock %}</title>
+    {% block stylesheets %}{% endblock %}
+    {#<link type="text/css" rel="stylesheet" href="{{ asset('bundles/app/extlib/toastr-2.1.2/toastr.min.css') }}" />#}
+    {#<link type="text/css" rel="stylesheet" href="{{ asset('bundles/app/extlib/bootstrap-3.3.5/css/bootstrap.min.css') }}" />#}
+    {#<link type="text/css" rel="stylesheet" href="{{ asset('bundles/app/extlib/font-awesome-4.5.0/css/font-awesome.min.css') }}" />#}
+    {#<link type="text/css" rel="stylesheet" href="{{ asset('bundles/app/extlib/jquery-ui-1.11.4/jquery-ui.min.css') }}" />#}
+    {#<link type="text/css" rel="stylesheet" href="{{ asset('bundles/app/extlib/jqGrid-5.0.0/css/ui.jqgrid.css') }}" />#}
+    {#<link type="text/css" rel="stylesheet" href="{{ asset('bundles/app/css/common.css') }}" />#}
+    {#<link type="text/css" rel="stylesheet" href="{{ asset('bundles/app/extlib/bootstrap-datepicker/css/bootstrap-datepicker3.min.css') }}" />#}
+    {#<link type="text/css" rel="stylesheet" href="{{ asset('bundles/app/extlib/jQuery-SlidingSidebar/css/blue-glass/sidebar.css') }}" />#}
+    {#<link type="text/css" rel="stylesheet" href="{{ asset('bundles/app/css/pocom.css') }}" />#}
+
+    {#<link type="image/x-icon" rel="icon" href="{{ asset('bundles/app/img/favicon.png') }}" />#}
+</head>
+<body>
+<table border="1" width="100%">
+    <tr>
+        <td width="150px">{% include "menu.html.twig" %}</td>
+        <td>{% block content %}{% endblock %}</td>
+    </tr>
+
+
+</table>
+{% block javascripts %}
+    {#<script type="text/javascript" src="{{ asset('bundles/app/extlib/jquery/jquery-1.11.3.min.js') }}"></script>#}
+    {#<script type="text/javascript" src="{{ asset('bundles/app/extlib/jquery-ui-1.11.4/jquery-ui.min.js') }}"></script>#}
+    {#<script type="text/javascript" src="{{ asset('js/jquery.layout.js') }}"></script>#}
+    {#<script type="text/javascript" src="{{ asset('bundles/app/extlib/jqGrid-5.0.0/js/i18n/grid.locale-fr.js') }}"></script>#}
+    {#<script type="text/javascript">#}
+    {#$.jgrid.no_legacy_api = true;#}
+    {#$.jgrid.useJSON = true;#}
+    {#</script>#}
+    {#<script type="text/javascript" src="{{ asset('bundles/app/extlib/jqGrid-5.0.0/js/jquery.jqGrid.min.js') }}"></script>#}
+    {#<script type="text/javascript" src="{{ asset('js/jquery.tablednd.js') }}"></script>#}
+    {#<script type="text/javascript" src="{{ asset('js/jquery.contextmenu.js') }}"></script>#}
+    {#<script type="text/javascript" src="{{ asset('js/jquery.filter_input.js') }}"></script>#}
+    {#<script type="text/javascript" src="{{ asset('js/jquery.playsound.js') }}"></script>#}
+    {#<script type="text/javascript" src="{{ asset('js/konami.js') }}"></script>#}
+    {#<script type="text/javascript" src="{{ asset('bundles/app/extlib/toastr-2.1.2/toastr.min.js') }}"></script>#}
+    {#<script type="text/javascript" src="{{ asset('bundles/app/js/function.js') }}"></script>#}
+    {#<script type="text/javascript">#}
+    {#toastr.options = {#}
+    {#"closeButton":      true,#}
+    {#"debug":            false,#}
+    {#"positionClass":    "toast-top-right",#}
+    {#"onclick":          null,#}
+    {#"showDuration":     "300",#}
+    {#"hideDuration":     "1000",#}
+    {#"timeOut":          "8000",#}
+    {#"extendedTimeOut":  "1000",#}
+    {#"showEasing":       "swing",#}
+    {#"hideEasing":       "linear",#}
+    {#"showMethod":       "fadeIn",#}
+    {#"hideMethod":       "fadeOut"#}
+    {#}#}
+    {#</script>#}
+    {#<script type="text/javascript" src="{{ asset('bundles/app/extlib/bootstrap-3.3.5/js/bootstrap.min.js') }}"></script>#}
+    {#<script type='text/javascript' src="{{ asset('bundles/app/extlib/bootstrap-datepicker/js/bootstrap-datepicker.min.js') }}"></script>#}
+    {#<script type='text/javascript' src="{{ asset('bundles/app/extlib/bootstrap-datepicker/js/locales/bootstrap-datepicker.fr.min.js') }}"></script>#}
+    {#<script type="text/javascript" src="{{ asset('bundles/app/extlib/jQuery-SlidingSidebar/dist/jquery.sidebar.min.js') }}"></script>#}
+    {#<script type='text/javascript' src="{{ asset('bundles/app/js/iban.js') }}"></script>#}
+    {#<script type='text/javascript' src="{{ asset('bundles/app/js/date.js') }}"></script>#}
+{% endblock %}
+{% block javascriptsPerso %}
+    {#<script type="text/javascript">#}
+    {#$(document).ready(function(){#}
+    {#{% for flashMessage in app.session.flashbag.get('error-toastr') %}#}
+    {#toastr.error("{{ flashMessage|raw }}");#}
+    {#{% endfor %}#}
+    {#{% for flashMessage in app.session.flashbag.get('success-toastr') %}#}
+    {#toastr.success("{{ flashMessage|raw }}");#}
+    {#{% endfor %}#}
+    {#});#}
+    {#</script>#}
+    {#<script type="text/javascript">#}
+    {#$('.pagerlink').click(function () {#}
+    {#$('.tbodyPage').css('display', 'none'); // masque tout#}
+    {#$('#page' + ($(this).attr('value'))).css('display', 'table-row-group'); // affiche la page sélectionnée#}
+    {#$('.pagerlinkLi').removeClass('active');// désactive tous les pagrelinkLi#}
+    {#$('#pagerlinkLi' + ($(this).attr('value'))).addClass('active');// active le pagerlinkLi sélectionné#}
+    {#});#}
+    {#</script>#}
+{% endblock %}
+</body>
 </html>
+{#{% endspaceless %}#}

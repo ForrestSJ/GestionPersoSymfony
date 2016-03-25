@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+Liste operations<br>
+    <table>
+    {% for entityOperation in entitiesOperation %}
+        <tr>
+            <td>{{ entityOperation.date }}</td>
+            <td>{{ entityOperation.lieu }}</td>
+            <td>{{ entityOperation.montant }}</td>
+        </tr>
+    {% endfor %}
+    </table>
+{% endblock %}
