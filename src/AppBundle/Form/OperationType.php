@@ -13,25 +13,25 @@ class OperationType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('lieu', 'text', array(
+            ->add('lieu', 'Symfony\Component\Form\Extension\Core\Type\TextType', array(
                 'label' => 'Lieu',
                 'required' => true
             ))
-            ->add('date', 'date', array(
+            ->add('date', 'Symfony\Component\Form\Extension\Core\Type\DateType', array(
                 'label' => 'Date',
                 'required' => true
             ))
-            ->add('montant', 'money', array(
+            ->add('montant', 'Symfony\Component\Form\Extension\Core\Type\MoneyType', array(
                 'label' => 'Montant',
                 'required' => true
             ))
-            ->add('modeOperation', 'entity', array(
+            ->add('modeOperation', 'Symfony\Bridge\Doctrine\Form\Type\EntityType', array(
                 'class' => 'AppBundle\Entity\ModeOperation',
-                'property' => 'designation',
+                'choice_label' => 'designation',
                 'multiple' => false,
                 'required' => true,
                 'label' => 'Mode',
-                'empty_value' => '-- Sélectionner un mode --',
+                'placeholder' => '-- Sélectionner un mode --',
                 'empty_data' => '',
 
             ))
@@ -43,7 +43,7 @@ class OperationType extends AbstractType
      *
      * @return string The name of this type
      */
-    public function getName()
+    public function getBlockPrefix()
     {
         return 'operation';
     }
@@ -52,7 +52,7 @@ class OperationType extends AbstractType
     {
         $resolver->setDefaults(array(
             'data_class' => 'AppBundle\Entity\Operation',
-            'intention' => 'operation',
+            'csrf_token_id' => 'operation',
             'csrf_protection' => false
         ));
     }

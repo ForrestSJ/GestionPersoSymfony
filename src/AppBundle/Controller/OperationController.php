@@ -44,7 +44,7 @@ class OperationController extends Controller
             $entityOperation = new Operation();
         }
 
-        $form = $this->createForm(new OperationType(), $entityOperation);
+        $form = $this->createForm(OperationType::class, $entityOperation);
 
         $form->handleRequest($request);
         if ($form->isValid()) {
