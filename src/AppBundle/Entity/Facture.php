@@ -24,7 +24,7 @@ class Facture
     /**
      * @var string
      *
-     * @ORM\Column(name="label", type="string", length=50)
+     * @ORM\Column(name="lieu", type="string", length=50)
      */
     private $lieu;
 
@@ -46,12 +46,19 @@ class Facture
      * @ORM\OneToMany(targetEntity="Operation", mappedBy="facture")
      */
     private $operations;
+
+    /**
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\FactureLigne", mappedBy="facture")
+     */
+    private $lignes;
+
     /**
      * Constructor
      */
     public function __construct()
     {
         $this->operations = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->lignes = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -168,5 +175,39 @@ class Facture
     public function getOperations()
     {
         return $this->operations;
+    }
+
+    /**
+     * Add ligne
+     *
+     * @param \AppBundle\Entity\FactureLigne $ligne
+     *
+     * @return Facture
+     */
+    public function addLigne(\AppBundle\Entity\FactureLigne $ligne)
+    {
+        $this->lignes[] = $ligne;
+
+        return $this;
+    }
+
+    /**
+     * Remove ligne
+     *
+     * @param \AppBundle\Entity\FactureLigne $ligne
+     */
+    public function removeLigne(\AppBundle\Entity\FactureLigne $ligne)
+    {
+        $this->lignes->removeElement($ligne);
+    }
+
+    /**
+     * Get lignes
+     *
+     * @return \AppBundle\Entity\FactureLigne[]
+     */
+    public function getLignes()
+    {
+        return $this->lignes;
     }
 }

@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+    {{ form_start(form) }}
+    {{ form_row(form.lieu) }}
+    {{ form_row(form.date) }}
+    {{ form_row(form.montant) }}
+    <hr>
+    {% for ligne in form.lignes %}
+        {{ form_row(ligne.label) }}
+        {{ form_row(ligne.montant) }}
+        {{ form_row(ligne.categorie) }}
+        -<br>
+    {% endfor %}
+    <input type="submit">
+    <ul class="tags" data-prototype="{{ form_widget(form.lignes.vars.prototype)|e }}">
+    </ul>
+    {{ form_end(form) }}
+    <a href="{{ path('facture_liste') }}">retour</a>
+{% endblock %}
+

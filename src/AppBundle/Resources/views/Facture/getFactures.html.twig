@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+    <a href="{{ path('facture_create') }}">Ajouter facture</a><br>
+
+    Liste factures<br>
+    <table border="1">
+        <tr>
+            <th>date</th>
+            <th>lieu</th>
+            <th>montant</th>
+            <th>actions</th>
+        </tr>
+        {% for entityFacture in entitiesFacture %}
+            <tr>
+                <td>{{ entityFacture.date|date("d/m/Y") }}</td>
+                <td>{{ entityFacture.lieu }}</td>
+                <td>{{ entityFacture.montant }}</td>
+                <td><a href="{{ path('facture_edit/{id}', {'id' : entityFacture.id}) }}">modifier</a></td>
+            </tr>
+        {% endfor %}
+    </table>
+{% endblock %}
