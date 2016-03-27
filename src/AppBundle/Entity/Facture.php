@@ -48,7 +48,7 @@ class Facture
     private $operations;
 
     /**
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\FactureLigne", mappedBy="facture")
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\FactureLigne", mappedBy="facture", cascade={"persist"})
      */
     private $lignes;
 
@@ -186,6 +186,7 @@ class Facture
      */
     public function addLigne(\AppBundle\Entity\FactureLigne $ligne)
     {
+        $ligne->setFacture($this);
         $this->lignes[] = $ligne;
 
         return $this;

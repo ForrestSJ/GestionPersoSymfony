@@ -25,7 +25,7 @@ class FactureLigne
      * @var \AppBundle\Entity\Facture
      *
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Facture", inversedBy="lignes")
-     * @ORM\JoinColumn(name="factureId", referencedColumnName="id")
+     * @ORM\JoinColumn(name="factureId", referencedColumnName="id", nullable=false)
      */
     private $facture;
 

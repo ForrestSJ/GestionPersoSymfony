@@ -32,6 +32,7 @@ class FactureType extends AbstractType
         // ajout du formulaire de lignes de facture
         $builder->add('lignes', CollectionType::class, array(
             'entry_type' => FactureLigneType::class,
+            'by_reference' => false,
             'allow_add' => true,
         ));
 
