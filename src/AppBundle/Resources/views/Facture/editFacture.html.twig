@@ -6,15 +6,27 @@
     {{ form_row(form.date) }}
     {{ form_row(form.montant) }}
     <hr>
-    {% for ligne in form.lignes %}
-        {{ form_row(ligne.label) }}
-        {{ form_row(ligne.montant) }}
-        {{ form_row(ligne.categorie) }}
-        -<br>
-    {% endfor %}
-    <ul class="lignes" data-prototype="{{ form_widget(form.lignes.vars.prototype)|e }}">
-    </ul>
+    <table id="tblLignes" border="1" width="600px">
+        <thead>
+        <tr>
+            <th>label</th>
+            <th>montant</th>
+            <th>btn</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for ligne in form.lignes %}
+            {{ include('AppBundle:Facture:prototypeFactureLigne.html.twig', { 'form': ligne }) }}
+        {% endfor %}
+        </tbody>
+    </table>
     <input type="submit">
+    <div id="collectionContainer"
+         data-prototype="
+         {% filter escape %}
+             {{ include('AppBundle:Facture:prototypeFactureLigne.html.twig', { 'form': form.lignes.vars.prototype }) }}
+         {% endfilter %}">
+    </div>
     {{ form_end(form) }}
     <a href="{{ path('facture_liste') }}">retour</a>
 {% endblock %}
@@ -26,14 +38,14 @@
 
         // setup an "add a ligne" link
         var $addLigneLink = $('<a href="#" class="add_ligne_link">Add a ligne</a>');
-        var $newLinkLi = $('<li></li>').append($addLigneLink);
+        //        var $newLinkLi = $('<li></li>').append($addLigneLink);
 
         jQuery(document).ready(function () {
             // Get the ul that holds the collection of lignes
-            $collectionHolder = $('ul.lignes');
+            $collectionHolder = $('#collectionContainer');
 
             // add the "add a ligne" anchor and li to the lignes ul
-            $collectionHolder.append($newLinkLi);
+            $collectionHolder.append($addLigneLink);
 
             // count the current form inputs we have (e.g. 2), use that as the new
             // index when inserting a new item (e.g. 2)
@@ -44,11 +56,11 @@
                 e.preventDefault();
 
                 // add a new ligne form (see next code block)
-                addLigneForm($collectionHolder, $newLinkLi);
+                addLigneForm($collectionHolder, $addLigneLink);
             });
         });
 
-        function addLigneForm($collectionHolder, $newLinkLi) {
+        function addLigneForm($collectionHolder, $addLigneLink) {
             // Get the data-prototype explained earlier
             var prototype = $collectionHolder.data('prototype');
 
@@ -63,8 +75,9 @@
             $collectionHolder.data('index', index + 1);
 
             // Display the form in the page in an li, before the "Add a ligne" link li
-            var $newFormLi = $('<li></li>').append(newForm);
-            $newLinkLi.before($newFormLi);
+//            var $newFormLi = $('<li></li>').append(newForm);
+//            $addLigneLink.before(newForm);
+            $('#tblLignes').append(newForm);
         }
     </script>
 {% endblock %}
