@@ -9,22 +9,32 @@
     <table id="tblLignes" border="1" width="600px">
         <thead>
         <tr>
+            <th width="20px">&nbsp;</th>
             <th>label</th>
-            <th>montant</th>
-            <th>btn</th>
+            <th width="100px">montant</th>
+            <th width="100px">btn</th>
         </tr>
         </thead>
         <tbody>
         {% for ligne in form.lignes %}
             {{ include('AppBundle:Facture:prototypeFactureLigne.html.twig', { 'form': ligne }) }}
         {% endfor %}
+        {% for fidelite in form.fidelites %}
+            {{ include('AppBundle:Facture:prototypeFactureFidelite.html.twig', { 'form': fidelite }) }}
+        {% endfor %}
         </tbody>
     </table>
     <input type="submit">
-    <div id="collectionContainer"
+    <div id="collectionContainerLigne"
          data-prototype="
          {% filter escape %}
              {{ include('AppBundle:Facture:prototypeFactureLigne.html.twig', { 'form': form.lignes.vars.prototype }) }}
+         {% endfilter %}">
+    </div>
+    <div id="collectionContainerFidelite"
+         data-prototype="
+         {% filter escape %}
+             {{ include('AppBundle:Facture:prototypeFactureFidelite.html.twig', { 'form': form.fidelites.vars.prototype }) }}
          {% endfilter %}">
     </div>
     {{ form_end(form) }}
@@ -34,7 +44,7 @@
 {% block javascripts %}
     {{ parent() }}
     <script type="text/javascript">
-        var $collectionHolder;
+        var $collectionHolderLigne;
 
         // setup an "add a ligne" link
         var $addLigneLink = $('<a href="#" class="add_ligne_link">Add a ligne</a>');
@@ -42,41 +52,85 @@
 
         jQuery(document).ready(function () {
             // Get the ul that holds the collection of lignes
-            $collectionHolder = $('#collectionContainer');
+            $collectionHolderLigne = $('#collectionContainerLigne');
 
             // add the "add a ligne" anchor and li to the lignes ul
-            $collectionHolder.append($addLigneLink);
+            $collectionHolderLigne.append($addLigneLink);
 
             // count the current form inputs we have (e.g. 2), use that as the new
             // index when inserting a new item (e.g. 2)
-            $collectionHolder.data('index', $collectionHolder.find(':input').length + {{ form.lignes|length }});
+            $collectionHolderLigne.data('index', $collectionHolderLigne.find(':input').length + {{ form.lignes|length }});
 
             $addLigneLink.on('click', function (e) {
                 // prevent the link from creating a "#" on the URL
                 e.preventDefault();
 
                 // add a new ligne form (see next code block)
-                addLigneForm($collectionHolder, $addLigneLink);
+                addLigneForm($collectionHolderLigne, $addLigneLink);
             });
         });
 
-        function addLigneForm($collectionHolder, $addLigneLink) {
+        function addLigneForm($collectionHolderLigne, $addLigneLink) {
             // Get the data-prototype explained earlier
-            var prototype = $collectionHolder.data('prototype');
+            var prototype = $collectionHolderLigne.data('prototype');
 
             // get the new index
-            var index = $collectionHolder.data('index');
+            var index = $collectionHolderLigne.data('index');
 
             // Replace '__name__' in the prototype's HTML to
             // instead be a number based on how many items we have
             var newForm = prototype.replace(/__name__/g, index);
 
             // increase the index with one for the next item
-            $collectionHolder.data('index', index + 1);
+            $collectionHolderLigne.data('index', index + 1);
 
             // Display the form in the page in an li, before the "Add a ligne" link li
 //            var $newFormLi = $('<li></li>').append(newForm);
 //            $addLigneLink.before(newForm);
+            $('#tblLignes').append(newForm);
+        }
+    </script>
+    <script type="text/javascript">
+        var $collectionHolderFidelite;
+
+        // setup an "add a fidelite" link
+        var $addFideliteLink = $('<a href="#" class="add_fidelite_link">Add a fidelite</a>');
+
+        jQuery(document).ready(function () {
+            // Get the ul that holds the collection of fidelites
+            $collectionHolderFidelite = $('#collectionContainerFidelite');
+
+            // add the "add a fidelite" anchor and li to the fidelites ul
+            $collectionHolderFidelite.append($addFideliteLink);
+
+            // count the current form inputs we have (e.g. 2), use that as the new
+            // index when inserting a new item (e.g. 2)
+            $collectionHolderFidelite.data('index', $collectionHolderFidelite.find(':input').length + {{ form.fidelites|length }});
+
+            $addFideliteLink.on('click', function (e) {
+                // prevent the link from creating a "#" on the URL
+                e.preventDefault();
+
+                // add a new fidelite form (see next code block)
+                addFideliteForm($collectionHolderFidelite, $addFideliteLink);
+            });
+        });
+
+        function addFideliteForm($collectionHolderFidelite, $addFideliteLink) {
+            // Get the data-prototype explained earlier
+            var prototype = $collectionHolderFidelite.data('prototype');
+
+            // get the new index
+            var index = $collectionHolderFidelite.data('index');
+
+            // Replace '__name__' in the prototype's HTML to
+            // instead be a number based on how many items we have
+            var newForm = prototype.replace(/__name__/g, index);
+
+            // increase the index with one for the next item
+            $collectionHolderFidelite.data('index', index + 1);
+
+            // Display the form in the page in an li, before the "Add a fidelite" link li
             $('#tblLignes').append(newForm);
         }
     </script>

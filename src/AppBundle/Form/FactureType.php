@@ -39,6 +39,13 @@ class FactureType extends AbstractType
             'allow_add' => true,
         ));
 
+        // ajout du formulaire de fidelites de facture
+        $builder->add('fidelites', CollectionType::class, array(
+            'entry_type' => FactureFideliteType::class,
+            'by_reference' => false,
+            'allow_add' => true,
+        ));
+
     }
 
     /**

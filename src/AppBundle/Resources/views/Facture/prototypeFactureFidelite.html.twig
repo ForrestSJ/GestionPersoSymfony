@@ -1,11 +1,11 @@
 <tr>
     <td>
-        L
+        F
     </td>
     <td>
-        <span id="display_{{ form.vars.id }}_label">
+        <span id="display_{{ form.vars.id }}_compte">
             {% if not form.vars.value == null %}
-                {{ form.vars.value.label }}
+                {{ form.vars.value.compte }}
             {% endif %}
         </span>
     </td>
@@ -32,7 +32,7 @@
                         <h4 class="modal-title">Modal Header</h4>
                     </div>
                     <div class="modal-body">
-                        {{ form_row(form.label) }}
+                        {{ form_row(form.compte) }}
                         {{ form_row(form.montant) }}
                         {{ form_row(form.categorie) }}
                     </div>
@@ -45,8 +45,8 @@
         </div>
         <script type="text/javascript">
             $('#modal_{{ form.vars.id }}').on('hidden.bs.modal', function (e) {
-                $('#display_{{ form.vars.id }}_label').text($('#{{ form.vars.id }}_label').val());
-                $('#display_{{ form.vars.id }}_montant').text($('#{{ form.vars.id }}_montant').val());
+                $('#display_{{ form.vars.id }}_compte').text($('#{{ form.vars.id }}_compte').text());
+                $('#display_{{ form.vars.id }}_montant').text($('#{{ form.vars.id }}_montant').val())
             });
         </script>
     </td>
