@@ -5,12 +5,12 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * ModeOperation
+ * Compte
  *
- * @ORM\Table(name="mode_operation")
+ * @ORM\Table(name="compte")
  * @ORM\Entity
  */
-class ModeOperation
+class Compte
 {
     /**
      * @var integer
@@ -29,6 +29,7 @@ class ModeOperation
     private $designation;
 
 
+
     /**
      * Get id
      *
@@ -44,7 +45,7 @@ class ModeOperation
      *
      * @param string $designation
      *
-     * @return ModeOperation
+     * @return Compte
      */
     public function setDesignation($designation)
     {

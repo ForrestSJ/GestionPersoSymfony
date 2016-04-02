@@ -58,6 +58,14 @@ class Operation
      */
     private $facture;
 
+    /**
+     * @var \AppBundle\Entity\Compte
+     *
+     * @ORM\ManyToOne(targetEntity="Compte")
+     * @ORM\JoinColumn(name="compteId", referencedColumnName="id")
+     */
+    private $compte;
+
 
     /**
      * Get id
@@ -148,7 +156,7 @@ class Operation
      *
      * @return Operation
      */
-    public function setModeOperation(\AppBundle\Entity\ModeOperation $modeOperation = null)
+    public function setModeOperation(ModeOperation $modeOperation = null)
     {
         $this->modeOperation = $modeOperation;
 
@@ -172,7 +180,7 @@ class Operation
      *
      * @return Operation
      */
-    public function setFacture(\AppBundle\Entity\Facture $facture = null)
+    public function setFacture(Facture $facture = null)
     {
         $this->facture = $facture;
 
@@ -187,5 +195,29 @@ class Operation
     public function getFacture()
     {
         return $this->facture;
+    }
+
+    /**
+     * Set compte
+     *
+     * @param \AppBundle\Entity\Compte $compte
+     *
+     * @return Operation
+     */
+    public function setCompte(Compte $compte = null)
+    {
+        $this->compte = $compte;
+
+        return $this;
+    }
+
+    /**
+     * Get compte
+     *
+     * @return \AppBundle\Entity\Compte
+     */
+    public function getCompte()
+    {
+        return $this->compte;
     }
 }

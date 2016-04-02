@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -53,12 +54,18 @@ class Facture
     private $lignes;
 
     /**
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\FactureFidelite", mappedBy="facture", cascade={"persist"})
+     */
+    private $fidelites;
+
+    /**
      * Constructor
      */
     public function __construct()
     {
-        $this->operations = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->lignes = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->operations = new ArrayCollection();
+        $this->lignes = new ArrayCollection();
+        $this->fidelites = new ArrayCollection();
     }
 
     /**
@@ -146,11 +153,11 @@ class Facture
     /**
      * Add operation
      *
-     * @param \AppBundle\Entity\Operation $operation
+     * @param Operation $operation
      *
      * @return Facture
      */
-    public function addOperation(\AppBundle\Entity\Operation $operation)
+    public function addOperation(Operation $operation)
     {
         $this->operations[] = $operation;
 
@@ -160,9 +167,9 @@ class Facture
     /**
      * Remove operation
      *
-     * @param \AppBundle\Entity\Operation $operation
+     * @param Operation $operation
      */
-    public function removeOperation(\AppBundle\Entity\Operation $operation)
+    public function removeOperation(Operation $operation)
     {
         $this->operations->removeElement($operation);
     }
@@ -170,7 +177,7 @@ class Facture
     /**
      * Get operations
      *
-     * @return \AppBundle\Entity\Operation[]
+     * @return Operation[]
      */
     public function getOperations()
     {
@@ -180,11 +187,11 @@ class Facture
     /**
      * Add ligne
      *
-     * @param \AppBundle\Entity\FactureLigne $ligne
+     * @param FactureLigne $ligne
      *
      * @return Facture
      */
-    public function addLigne(\AppBundle\Entity\FactureLigne $ligne)
+    public function addLigne(FactureLigne $ligne)
     {
         $ligne->setFacture($this);
         $this->lignes[] = $ligne;
@@ -195,9 +202,9 @@ class Facture
     /**
      * Remove ligne
      *
-     * @param \AppBundle\Entity\FactureLigne $ligne
+     * @param FactureLigne $ligne
      */
-    public function removeLigne(\AppBundle\Entity\FactureLigne $ligne)
+    public function removeLigne(FactureLigne $ligne)
     {
         $this->lignes->removeElement($ligne);
     }
@@ -205,10 +212,44 @@ class Facture
     /**
      * Get lignes
      *
-     * @return \AppBundle\Entity\FactureLigne[]
+     * @return FactureLigne[]
      */
     public function getLignes()
     {
         return $this->lignes;
+    }
+
+    /**
+     * Add fidelite
+     *
+     * @param FactureFidelite $fidelite
+     *
+     * @return Facture
+     */
+    public function addFidelite(FactureFidelite $fidelite)
+    {
+        $this->fidelites[] = $fidelite;
+
+        return $this;
+    }
+
+    /**
+     * Remove fidelite
+     *
+     * @param FactureFidelite $fidelite
+     */
+    public function removeFidelite(FactureFidelite $fidelite)
+    {
+        $this->fidelites->removeElement($fidelite);
+    }
+
+    /**
+     * Get fidelites
+     *
+     * @return FactureFidelite[]
+     */
+    public function getFidelites()
+    {
+        return $this->fidelites;
     }
 }
