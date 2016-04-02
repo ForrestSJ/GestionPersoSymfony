@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+    <a href="{{ path('compte_create') }}">Ajouter un compte</a><br>
+
+    Liste comptes<br>
+    <table border="1">
+        <tr>
+            <th>désignation</th>
+            <th>actions</th>
+        </tr>
+        {% for entityCompte in entitiesCompte %}
+            <tr>
+                <td>{{ entityCompte.designation }}</td>
+                <td><a href="{{ path('compte_edit/{id}', {'id' : entityCompte.id}) }}">modifier</a></td>
+            </tr>
+        {% endfor %}
+    </table>
+{% endblock %}
