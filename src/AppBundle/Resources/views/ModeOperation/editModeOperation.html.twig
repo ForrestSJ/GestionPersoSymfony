@@ -1,0 +1,9 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+    {{ form_start(form) }}
+    {{ form_row(form.designation) }}
+    <input type="submit">
+    {{ form_end(form) }}
+    <a href="{{ path('mode_operation_liste') }}">retour</a>
+{% endblock %}

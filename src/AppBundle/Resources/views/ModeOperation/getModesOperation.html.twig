@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+    <a href="{{ path('mode_operation_create') }}">Ajouter un mode d'opération</a><br>
+
+    Liste modes opération<br>
+    <table border="1">
+        <tr>
+            <th>désignation</th>
+            <th>actions</th>
+        </tr>
+        {% for entityModeOperation in entitiesModeOperation %}
+            <tr>
+                <td>{{ entityModeOperation.designation }}</td>
+                <td><a href="{{ path('mode_operation_edit/{id}', {'id' : entityModeOperation.id}) }}">modifier</a></td>
+            </tr>
+        {% endfor %}
+    </table>
+{% endblock %}
