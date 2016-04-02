@@ -3,7 +3,7 @@
 namespace AppBundle\Form;
 
 
-use AppBundle\Entity\FactureLigne;
+
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -17,15 +17,18 @@ class FactureType extends AbstractType
         $builder
             ->add('lieu', 'Symfony\Component\Form\Extension\Core\Type\TextType', array(
                 'label' => 'Lieu',
-                'required' => true
+                'required' => true,
+                'attr' => array('oninvalid' => 'toastr.warning("lieu non renseigné")')
             ))
             ->add('date', 'Symfony\Component\Form\Extension\Core\Type\DateType', array(
                 'label' => 'Date',
-                'required' => true
+                'required' => true,
+                'attr' => array('oninvalid' => 'toastr.warning("date invalide")')
             ))
             ->add('montant', 'Symfony\Component\Form\Extension\Core\Type\MoneyType', array(
                 'label' => 'Montant',
-                'required' => true
+                'required' => true,
+                'attr' => array('oninvalid' => 'toastr.warning("montant non renseigné")')
             ))
         ;
 
