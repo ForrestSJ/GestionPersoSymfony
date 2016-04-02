@@ -66,6 +66,13 @@ class Operation
      */
     private $compte;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="commentaire", type="string", length=255)
+     */
+    private $commentaire;
+
 
     /**
      * Get id
@@ -219,5 +226,29 @@ class Operation
     public function getCompte()
     {
         return $this->compte;
+    }
+
+    /**
+     * Set commentaire
+     *
+     * @param string $commentaire
+     *
+     * @return Operation
+     */
+    public function setCommentaire($commentaire)
+    {
+        $this->commentaire = $commentaire;
+
+        return $this;
+    }
+
+    /**
+     * Get commentaire
+     *
+     * @return string
+     */
+    public function getCommentaire()
+    {
+        return $this->commentaire;
     }
 }
