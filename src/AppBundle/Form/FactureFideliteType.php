@@ -56,7 +56,6 @@ class FactureFideliteType extends AbstractType
         $resolver->setDefaults(array(
             'data_class' => 'AppBundle\Entity\FactureFidelite',
             'csrf_token_id' => 'factureFidelite',
-            'csrf_protection' => false
         ));
     }
 }

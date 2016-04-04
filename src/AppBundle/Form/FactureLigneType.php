@@ -52,7 +52,6 @@ class FactureLigneType extends AbstractType
         $resolver->setDefaults(array(
             'data_class' => 'AppBundle\Entity\FactureLigne',
             'csrf_token_id' => 'factureLigne',
-            'csrf_protection' => false
         ));
     }
 }

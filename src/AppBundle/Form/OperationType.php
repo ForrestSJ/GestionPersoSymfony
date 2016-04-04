@@ -53,7 +53,6 @@ class OperationType extends AbstractType
         $resolver->setDefaults(array(
             'data_class' => 'AppBundle\Entity\Operation',
             'csrf_token_id' => 'operation',
-            'csrf_protection' => false
         ));
     }
 }

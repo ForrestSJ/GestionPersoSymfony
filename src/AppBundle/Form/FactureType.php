@@ -63,7 +63,6 @@ class FactureType extends AbstractType
         $resolver->setDefaults(array(
             'data_class' => 'AppBundle\Entity\Facture',
             'csrf_token_id' => 'facture',
-            'csrf_protection' => false
         ));
     }
 }
