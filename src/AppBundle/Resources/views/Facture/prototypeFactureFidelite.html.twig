@@ -1,11 +1,15 @@
 <tr>
     <td>
-        F__name__
+        {% if not form.vars.value == null %}
+            F{{ form.vars.name }}
+        {% else %}
+            F__name__
+        {% endif %}
     </td>
     <td>
         <span id="display_{{ form.vars.id }}_compte">
             {% if not form.vars.value == null %}
-                {{ form.vars.value.compte }}
+                {{ form.vars.value.compte.designation }}
             {% endif %}
         </span>
     </td>

@@ -1,6 +1,10 @@
 <tr>
     <td>
-        L__name__
+        {% if not form.vars.value == null %}
+            L{{ form.vars.name }}
+        {% else %}
+            L__name__
+        {% endif %}
     </td>
     <td>
         <span id="display_{{ form.vars.id }}_label">
