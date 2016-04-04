@@ -193,7 +193,7 @@ class Facture
      */
     public function addLigne(FactureLigne $ligne)
     {
-        $ligne->setFacture($this);
+        if($ligne) $ligne->setFacture($this);
         $this->lignes[] = $ligne;
 
         return $this;
@@ -228,6 +228,7 @@ class Facture
      */
     public function addFidelite(FactureFidelite $fidelite)
     {
+        if($fidelite) $fidelite->setFacture($this);
         $this->fidelites[] = $fidelite;
 
         return $this;
