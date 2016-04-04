@@ -1,6 +1,6 @@
 <tr>
     <td>
-        F
+        F__name__
     </td>
     <td>
         <span id="display_{{ form.vars.id }}_compte">
@@ -45,7 +45,7 @@
         </div>
         <script type="text/javascript">
             $('#modal_{{ form.vars.id }}').on('hidden.bs.modal', function (e) {
-                $('#display_{{ form.vars.id }}_compte').text($('#{{ form.vars.id }}_compte').text());
+                $('#display_{{ form.vars.id }}_compte').text($('#{{ form.vars.id }}_compte option:selected').text());
                 $('#display_{{ form.vars.id }}_montant').text($('#{{ form.vars.id }}_montant').val())
             });
         </script>

@@ -25,9 +25,9 @@ class Categorie
     /**
      * @var string
      *
-     * @ORM\Column(name="label", type="string", length=50)
+     * @ORM\Column(name="designation", type="string", length=50)
      */
-    private $label;
+    private $designation;
 
     /**
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\Categorie", mappedBy="parentCategorie")
@@ -61,27 +61,27 @@ class Categorie
     }
 
     /**
-     * Set label
+     * Set designation
      *
-     * @param string $label
+     * @param string $designation
      *
      * @return Categorie
      */
-    public function setLabel($label)
+    public function setDesignation($designation)
     {
-        $this->label = $label;
+        $this->designation = $designation;
 
         return $this;
     }
 
     /**
-     * Get label
+     * Get designation
      *
      * @return string
      */
-    public function getLabel()
+    public function getDesignation()
     {
-        return $this->label;
+        return $this->designation;
     }
 
     /**

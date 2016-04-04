@@ -18,19 +18,22 @@ class FactureFideliteType extends AbstractType
                 'choice_label' => 'designation',
                 'multiple' => false,
                 'required' => true,
+                'attr' => array('oninvalid' => "toastr.error('compte non sélectionné : F__name__')"),
                 'label' => 'Compte',
                 'placeholder' => '-- Sélectionner un compte --',
                 'empty_data' => '',
             ))
             ->add('montant', 'Symfony\Component\Form\Extension\Core\Type\MoneyType', array(
                 'label' => 'Montant',
-                'required' => true
+                'required' => true,
+                'attr' => array('oninvalid' => "toastr.error('montant non renseigné : F__name__')")
             ))
             ->add('categorie', 'Symfony\Bridge\Doctrine\Form\Type\EntityType', array(
                 'class' => 'AppBundle\Entity\Categorie',
-                'choice_label' => 'label',
+                'choice_label' => 'designation',
                 'multiple' => false,
                 'required' => true,
+                'attr' => array('oninvalid' => "toastr.error('catégorie non sélectionnée : F__name__')"),
                 'label' => 'Categorie',
                 'placeholder' => '-- Sélectionner une catégorie --',
                 'empty_data' => '',

@@ -15,17 +15,20 @@ class FactureLigneType extends AbstractType
         $builder
             ->add('label', 'Symfony\Component\Form\Extension\Core\Type\TextType', array(
                 'label' => 'Label',
-                'required' => true
+                'required' => true,
+                'attr' => array('oninvalid' => "toastr.error('label non renseigné : L__name__')")
             ))
             ->add('montant', 'Symfony\Component\Form\Extension\Core\Type\MoneyType', array(
                 'label' => 'Montant',
-                'required' => true
+                'required' => true,
+                'attr' => array('oninvalid' => "toastr.error('montant non renseigné : L__name__')")
             ))
             ->add('categorie', 'Symfony\Bridge\Doctrine\Form\Type\EntityType', array(
                 'class' => 'AppBundle\Entity\Categorie',
-                'choice_label' => 'label',
+                'choice_label' => 'designation',
                 'multiple' => false,
                 'required' => true,
+                'attr' => array('oninvalid' => "toastr.error('catégorie non sélectionnée : L__name__')"),
                 'label' => 'Categorie',
                 'placeholder' => '-- Sélectionner une catégorie --',
                 'empty_data' => '',

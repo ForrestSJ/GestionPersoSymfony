@@ -37,6 +37,8 @@
              {{ include('AppBundle:Facture:prototypeFactureFidelite.html.twig', { 'form': form.fidelites.vars.prototype }) }}
          {% endfilter %}">
     </div>
+    {{ form_widget(form.lignes) }}
+    {{ form_widget(form.fidelites) }}
     {{ form_end(form) }}
     <a href="{{ path('facture_liste') }}">retour</a>
 {% endblock %}

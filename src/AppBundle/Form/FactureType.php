@@ -18,17 +18,17 @@ class FactureType extends AbstractType
             ->add('lieu', 'Symfony\Component\Form\Extension\Core\Type\TextType', array(
                 'label' => 'Lieu',
                 'required' => true,
-                'attr' => array('oninvalid' => 'toastr.warning("lieu non renseigné")')
+                'attr' => array('oninvalid' => "toastr.error('lieu non renseigné')")
             ))
             ->add('date', 'Symfony\Component\Form\Extension\Core\Type\DateType', array(
                 'label' => 'Date',
                 'required' => true,
-                'attr' => array('oninvalid' => 'toastr.warning("date invalide")')
+                'attr' => array('oninvalid' => "toastr.error('date invalide')")
             ))
             ->add('montant', 'Symfony\Component\Form\Extension\Core\Type\MoneyType', array(
                 'label' => 'Montant',
                 'required' => true,
-                'attr' => array('oninvalid' => 'toastr.warning("montant non renseigné")')
+                'attr' => array('oninvalid' => "toastr.error('montant non renseigné')")
             ))
         ;
 
