@@ -48,14 +48,14 @@ class FactureFideliteType extends AbstractType
      */
     public function getBlockPrefix()
     {
-        return 'factureLigne';
+        return 'factureFidelite';
     }
 
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'AppBundle\Entity\FactureLigne',
-            'csrf_token_id' => 'factureLigne',
+            'data_class' => 'AppBundle\Entity\FactureFidelite',
+            'csrf_token_id' => 'factureFidelite',
             'csrf_protection' => false
         ));
     }
