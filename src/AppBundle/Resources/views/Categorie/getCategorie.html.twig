@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+    <a href="{{ path('categorie_create') }}">Ajouter un categorie</a><br>
+
+    Liste catégories<br>
+    <table border="1">
+        <tr>
+            <th>désignation</th>
+            <th>parent</th>
+            <th>actions</th>
+        </tr>
+        {% for entityCategorie in entitiesCategorie %}
+            <tr>
+                <td>{{ entityCategorie.designation }}</td>
+                <td>{{ entityCategorie.parentCategorie.designation }}</td>
+                <td><a href="{{ path('categorie_edit/{id}', {'id' : entityCategorie.id}) }}">modifier</a></td>
+            </tr>
+        {% endfor %}
+    </table>
+{% endblock %}

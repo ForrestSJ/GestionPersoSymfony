@@ -1,0 +1,10 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+    {{ form_start(form) }}
+    {{ form_row(form.designation) }}
+    {{ form_row(form.parentCategorie) }}
+    <input type="submit">
+    {{ form_end(form) }}
+    <a href="{{ path('categorie_liste') }}">retour</a>
+{% endblock %}
