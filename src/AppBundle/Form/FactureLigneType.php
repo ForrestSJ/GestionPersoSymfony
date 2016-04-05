@@ -14,9 +14,9 @@ class FactureLigneType extends AbstractType
     {
         $builder
             ->add('label', 'Symfony\Component\Form\Extension\Core\Type\TextType', array(
-                'label' => 'Label',
+                'label' => 'Designation',
                 'required' => true,
-                'attr' => array('oninvalid' => "toastr.error('label non renseigné : L__name__')")
+                'attr' => array('oninvalid' => "toastr.error('designation non renseigné : L__name__')")
             ))
             ->add('montant', 'Symfony\Component\Form\Extension\Core\Type\MoneyType', array(
                 'label' => 'Montant',
