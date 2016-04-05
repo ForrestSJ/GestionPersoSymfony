@@ -13,7 +13,7 @@ class FactureLigneType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('label', 'Symfony\Component\Form\Extension\Core\Type\TextType', array(
+            ->add('designation', 'Symfony\Component\Form\Extension\Core\Type\TextType', array(
                 'label' => 'Designation',
                 'required' => true,
                 'attr' => array('oninvalid' => "toastr.error('designation non renseigné : L__name__')")
