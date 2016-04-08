@@ -69,7 +69,7 @@ class Operation
     /**
      * @var string
      *
-     * @ORM\Column(name="commentaire", type="string", length=255)
+     * @ORM\Column(name="commentaire", type="string", length=255, nullable=true)
      */
     private $commentaire;
 

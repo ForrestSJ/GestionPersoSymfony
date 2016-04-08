@@ -33,7 +33,19 @@ class OperationType extends AbstractType
                 'label' => 'Mode',
                 'placeholder' => '-- Sélectionner un mode --',
                 'empty_data' => '',
-
+            ))
+            ->add('compte', 'Symfony\Bridge\Doctrine\Form\Type\EntityType', array(
+                'class' => 'AppBundle\Entity\Compte',
+                'choice_label' => 'designation',
+                'multiple' => false,
+                'required' => true,
+                'label' => 'Mode',
+                'placeholder' => '-- Sélectionner un compte --',
+                'empty_data' => '',
+            ))
+            ->add('commentaire', 'Symfony\Component\Form\Extension\Core\Type\TextareaType', array(
+                'label' => 'Commentaire',
+                'required' => false
             ))
         ;
     }
