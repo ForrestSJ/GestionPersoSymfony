@@ -71,4 +71,34 @@ class CategorieController extends Controller
         );
     }
 
+    /**
+     * @Route("/supprcategorie/{id}", name="categorie_delete/{id}")
+     *
+     */
+    public function deleteCategorieAction(Request $request, $id)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+            $entityCategorie = $em->getRepository('AppBundle:Categorie')->find($id);
+            if (!$entityCategorie) {
+                throw $this->createNotFoundException('Catégorie non trouvée');
+            }
+
+        try {
+            $em->remove($entityCategorie);
+            $em->flush();
+
+            $this->addFlash(
+                'success-toastr',
+                'Suppression effectuée avec succès'
+            );
+        } catch (\Exception $e) {
+            $this->addFlash(
+                'danger',
+                'Une erreur s\'est produite lors de la suppression : ' . $e
+            );
+        }
+        return $this->redirectToRoute('categorie_liste', array(), 301);
+    }
+
 }

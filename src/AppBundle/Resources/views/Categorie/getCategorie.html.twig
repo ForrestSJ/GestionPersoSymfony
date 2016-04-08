@@ -14,7 +14,42 @@
             <tr>
                 <td>{{ entityCategorie.designation }}</td>
                 <td>{{ entityCategorie.parentCategorie.designation }}</td>
-                <td><a href="{{ path('categorie_edit/{id}', {'id' : entityCategorie.id}) }}">modifier</a></td>
+                <td><a href="{{ path('categorie_edit/{id}', {'id' : entityCategorie.id}) }}">
+                        <button type="button" class="btn btn-warning btn-xs">
+                            Modifier
+                        </button>
+                    </a>
+                    <!-- Trigger the modal with a button -->
+                    <button type="button" class="btn btn-danger btn-xs" data-toggle="modal"
+                            data-target="#modal_suppr_{{ entityCategorie.id }}">
+                        Supprimer
+                    </button>
+                    <!-- Modal -->
+                    <div id="modal_suppr_{{ entityCategorie.id }}" class="modal fade" role="dialog">
+                        <div class="modal-dialog">
+
+                            <!-- Modal content-->
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    <h4 class="modal-title">Confirmation suppression</h4>
+                                </div>
+                                <div class="modal-body">
+                                    Confirmer la suppression de la catégorie "{{ entityCategorie.designation }}"?
+                                </div>
+                                <div class="modal-footer">
+                                    <a href="{{ path('categorie_delete/{id}', {'id' : entityCategorie.id}) }}">
+                                        <button type="button" class="btn btn-danger">
+                                            Supprimer
+                                        </button>
+                                    </a>
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </td>
             </tr>
         {% endfor %}
     </table>
