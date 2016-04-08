@@ -81,7 +81,7 @@ class CompteController extends Controller
 
         $entityCompte = $em->getRepository('AppBundle:Compte')->find($id);
         if (!$entityCompte) {
-            throw $this->createNotFoundException('Compte non trouvée');
+            throw $this->createNotFoundException('Compte non trouvé');
         }
 
         try {

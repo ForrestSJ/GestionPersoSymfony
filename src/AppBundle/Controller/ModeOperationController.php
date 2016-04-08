@@ -71,4 +71,34 @@ class ModeOperationController extends Controller
         );
     }
 
+    /**
+     * @Route("/suppr_mode_operation/{id}", name="mode_operation_delete/{id}")
+     *
+     */
+    public function deleteModeOperationAction(Request $request, $id)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $entityModeOperation = $em->getRepository('AppBundle:ModeOperation')->find($id);
+        if (!$entityModeOperation) {
+            throw $this->createNotFoundException('Mode d\'opération non trouvé');
+        }
+
+        try {
+            $em->remove($entityModeOperation);
+            $em->flush();
+
+            $this->addFlash(
+                'success-toastr',
+                'Suppression effectuée avec succès'
+            );
+        } catch (\Exception $e) {
+            $this->addFlash(
+                'danger',
+                'Une erreur s\'est produite lors de la suppression : ' . $e
+            );
+        }
+        return $this->redirectToRoute('mode_operation_liste', array(), 301);
+    }
+
 }
