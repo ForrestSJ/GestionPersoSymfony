@@ -12,7 +12,42 @@
         {% for entityCompte in entitiesCompte %}
             <tr>
                 <td>{{ entityCompte.designation }}</td>
-                <td><a href="{{ path('compte_edit/{id}', {'id' : entityCompte.id}) }}">modifier</a></td>
+                <td><a href="{{ path('compte_edit/{id}', {'id' : entityCompte.id}) }}">
+                        <button type="button" class="btn btn-warning btn-xs">
+                            Modifier
+                        </button>
+                    </a>
+                    <!-- Trigger the modal with a button -->
+                    <button type="button" class="btn btn-danger btn-xs" data-toggle="modal"
+                            data-target="#modal_suppr_{{ entityCompte.id }}">
+                        Supprimer
+                    </button>
+                    <!-- Modal -->
+                    <div id="modal_suppr_{{ entityCompte.id }}" class="modal fade" role="dialog">
+                        <div class="modal-dialog">
+
+                            <!-- Modal content-->
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    <h4 class="modal-title">Confirmation suppression</h4>
+                                </div>
+                                <div class="modal-body">
+                                    Confirmer la suppression du compte "{{ entityCompte.designation }}"?
+                                </div>
+                                <div class="modal-footer">
+                                    <a href="{{ path('compte_delete/{id}', {'id' : entityCompte.id}) }}">
+                                        <button type="button" class="btn btn-danger">
+                                            Supprimer
+                                        </button>
+                                    </a>
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </td>
             </tr>
         {% endfor %}
     </table>

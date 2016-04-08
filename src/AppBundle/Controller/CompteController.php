@@ -71,4 +71,34 @@ class CompteController extends Controller
         );
     }
 
+    /**
+     * @Route("/supprcompte/{id}", name="compte_delete/{id}")
+     *
+     */
+    public function deleteCompteAction(Request $request, $id)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $entityCompte = $em->getRepository('AppBundle:Compte')->find($id);
+        if (!$entityCompte) {
+            throw $this->createNotFoundException('Compte non trouvée');
+        }
+
+        try {
+            $em->remove($entityCompte);
+            $em->flush();
+
+            $this->addFlash(
+                'success-toastr',
+                'Suppression effectuée avec succès'
+            );
+        } catch (\Exception $e) {
+            $this->addFlash(
+                'danger',
+                'Une erreur s\'est produite lors de la suppression : ' . $e
+            );
+        }
+        return $this->redirectToRoute('compte_liste', array(), 301);
+    }
+
 }
