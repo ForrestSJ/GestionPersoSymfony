@@ -27,10 +27,14 @@
         <td width="150px">logo</td>
         <td>
             {% for flashMessage in app.session.flashbag.get('danger-toastr') %}
+                <span style="color: red">
                 {{ flashMessage|raw }}
+                </span>
             {% endfor %}
             {% for flashMessage in app.session.flashbag.get('success-toastr') %}
+                <span style="color: green">
                 {{ flashMessage|raw }}
+                </span>
             {% endfor %}
         </td>
     </tr>
