@@ -9,6 +9,8 @@
             <th>date</th>
             <th>lieu</th>
             <th>montant</th>
+            <th>mode</th>
+            <th>compte</th>
             <th>actions</th>
         </tr>
         {% for entityOperation in entitiesOperation %}
@@ -16,7 +18,44 @@
                 <td>{{ entityOperation.date|date("d/m/Y") }}</td>
                 <td>{{ entityOperation.lieu }}</td>
                 <td>{{ entityOperation.montant }}</td>
-                <td><a href="{{ path('operation_edit/{id}', {'id' : entityOperation.id}) }}">modifier</a></td>
+                <td>{{ entityOperation.compte.designation }}</td>
+                <td>{{ entityOperation.commentaire }}</td>
+                <td><a href="{{ path('operation_edit/{id}', {'id' : entityOperation.id}) }}">
+                        <button type="button" class="btn btn-warning btn-xs">
+                            Modifier
+                        </button>
+                    </a>
+                    <!-- Trigger the modal with a button -->
+                    <button type="button" class="btn btn-danger btn-xs" data-toggle="modal"
+                            data-target="#modal_suppr_{{ entityOperation.id }}">
+                        Supprimer
+                    </button>
+                    <!-- Modal -->
+                    <div id="modal_suppr_{{ entityOperation.id }}" class="modal fade" role="dialog">
+                        <div class="modal-dialog">
+
+                            <!-- Modal content-->
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    <h4 class="modal-title">Confirmation suppression</h4>
+                                </div>
+                                <div class="modal-body">
+                                    Confirmer la suppression de l'opération ?
+                                </div>
+                                <div class="modal-footer">
+                                    <a href="{{ path('operation_delete/{id}', {'id' : entityOperation.id}) }}">
+                                        <button type="button" class="btn btn-danger">
+                                            Supprimer
+                                        </button>
+                                    </a>
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </td>
             </tr>
         {% endfor %}
     </table>

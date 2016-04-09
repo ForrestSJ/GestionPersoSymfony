@@ -71,4 +71,34 @@ class OperationController extends Controller
         );
     }
 
+    /**
+     * @Route("/suppr_operation/{id}", name="operation_delete/{id}")
+     *
+     */
+    public function deleteOperationAction(Request $request, $id)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $entityOperation = $em->getRepository('AppBundle:Operation')->find($id);
+        if (!$entityOperation) {
+            throw $this->createNotFoundException('Operation non trouvée');
+        }
+
+        try {
+            $em->remove($entityOperation);
+            $em->flush();
+
+            $this->addFlash(
+                'success-toastr',
+                'Suppression effectuée avec succès'
+            );
+        } catch (\Exception $e) {
+            $this->addFlash(
+                'danger',
+                'Une erreur s\'est produite lors de la suppression : ' . $e
+            );
+        }
+        return $this->redirectToRoute('operation_liste', array(), 301);
+    }
+
 }

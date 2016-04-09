@@ -39,7 +39,7 @@ class OperationType extends AbstractType
                 'choice_label' => 'designation',
                 'multiple' => false,
                 'required' => true,
-                'label' => 'Mode',
+                'label' => 'Compte',
                 'placeholder' => '-- Sélectionner un compte --',
                 'empty_data' => '',
             ))
