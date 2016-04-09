@@ -60,7 +60,7 @@ class CompteController extends Controller
                 return $this->redirect($this->generateUrl('compte_edit/{id}', array('id' => $entityCompte->getId())));
             } catch (\Exception $e) {
                 $this->addFlash(
-                    'danger',
+                    'danger-toastr',
                     'Une erreur s\'est produite lors de l\'enregistrement'
                 );
             }
@@ -94,7 +94,7 @@ class CompteController extends Controller
             );
         } catch (\Exception $e) {
             $this->addFlash(
-                'danger',
+                'danger-toastr',
                 'Une erreur s\'est produite lors de la suppression : ' . $e
             );
         }

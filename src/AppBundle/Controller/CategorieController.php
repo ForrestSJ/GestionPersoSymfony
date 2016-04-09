@@ -60,7 +60,7 @@ class CategorieController extends Controller
                 return $this->redirect($this->generateUrl('categorie_edit/{id}', array('id' => $entityCategorie->getId())));
             } catch (\Exception $e) {
                 $this->addFlash(
-                    'danger',
+                    'danger-toastr',
                     'Une erreur s\'est produite lors de l\'enregistrement'
                 );
             }
@@ -94,7 +94,7 @@ class CategorieController extends Controller
             );
         } catch (\Exception $e) {
             $this->addFlash(
-                'danger',
+                'danger-toastr',
                 'Une erreur s\'est produite lors de la suppression : ' . $e
             );
         }
