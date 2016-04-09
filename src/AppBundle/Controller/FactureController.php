@@ -61,7 +61,7 @@ class FactureController extends Controller
                 return $this->redirect($this->generateUrl('facture_edit/{id}', array('id' => $entityFacture->getId())));
             } catch (\Exception $e) {
                 $this->addFlash(
-                    'danger',
+                    'danger-toastr',
                     'Une erreur s\'est produite lors de l\'enregistrement'
                 );
             }
@@ -70,6 +70,79 @@ class FactureController extends Controller
         return array(
             'form' => $form->createView(),
         );
+    }
+
+    /**
+     * @Route("/suppr_facture/{id}", name="facture_delete/{id}")
+     *
+     */
+    public function deleteFactureAction(Request $request, $id)
+    {
+        $suppressionPossible = true;
+        $em = $this->getDoctrine()->getManager();
+
+        $entityFacture = $em->getRepository('AppBundle:Facture')->find($id);
+        if (!$entityFacture) {
+            throw $this->createNotFoundException('Facture non trouvée');
+        }
+
+        // Vérifie qu'il n'y a rien d'associé à la facture
+        $entitiesLigne = $em->getRepository('AppBundle:FactureLigne')->findBy(
+            array(
+                'facture' => $entityFacture
+            )
+        );
+        if(count($entitiesLigne) > 0){
+            $suppressionPossible = false;
+            $this->addFlash(
+                'danger-toastr',
+                'Suppression impossible : il existe des lignes'
+            );
+        }
+
+        $entitiesFidelite = $em->getRepository('AppBundle:FactureFidelite')->findBy(
+            array(
+                'facture' => $entityFacture
+            )
+        );
+        if(count($entitiesFidelite) > 0){
+            $suppressionPossible = false;
+            $this->addFlash(
+                'danger-toastr',
+                'Suppression impossible : il existe des lignes de fidélité'
+            );
+        }
+
+        $entitiesOperation = $em->getRepository('AppBundle:Operation')->findBy(
+            array(
+                'facture' => $entityFacture
+            )
+        );
+        if(count($entitiesOperation) > 0){
+            $suppressionPossible = false;
+            $this->addFlash(
+                'danger-toastr',
+                'Suppression impossible : il existe des opérations associées'
+            );
+        }
+
+        if($suppressionPossible){
+            try {
+                $em->remove($entityFacture);
+                $em->flush();
+
+                $this->addFlash(
+                    'success-toastr',
+                    'Suppression effectuée avec succès'
+                );
+            } catch (\Exception $e) {
+                $this->addFlash(
+                    'danger-toastr',
+                    'Une erreur s\'est produite lors de la suppression : ' . $e
+                );
+            }
+        }
+        return $this->redirectToRoute('facture_liste', array(), 301);
     }
 
 }
