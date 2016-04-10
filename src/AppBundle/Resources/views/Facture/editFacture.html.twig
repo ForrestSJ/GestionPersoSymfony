@@ -28,6 +28,10 @@
         Ajouter une ligne
     </button>
     <br>
+    <button type="button" class="btn btn-primary btn-xs" id="btnAjoutFidelite">
+        Ajouter une fidélité
+    </button>
+    <br>
     <input type="submit">
     <div id="collectionContainerLigne"
          data-prototype="
@@ -70,7 +74,7 @@
             var index = $collectionHolderLigne.data('index');
 
             // contrôle si la ligne précédente contient un minimum de renseignements
-            if($("#facture_lignes_" + (index-1) + "_designation").val() == ""){
+            if(index > 0 && $("#facture_lignes_" + (index-1) + "_designation").val() == ""){
                 // ouvre la modal de la ligne précédente
                 $('#btn_modif_facture_lignes_' + (index-1)).click();
                 // arrête le processus d'ajout de ligne
@@ -96,45 +100,45 @@
     <script type="text/javascript">
         var $collectionHolderFidelite;
 
-        // setup an "add a fidelite" link
-        var $addFideliteLink = $('<a href="#" class="add_fidelite_link">Add a fidelite</a>');
-
         jQuery(document).ready(function () {
-            // Get the ul that holds the collection of fidelites
+            // Récupère la collection de fidelites
             $collectionHolderFidelite = $('#collectionContainerFidelite');
 
-            // add the "add a fidelite" anchor and li to the fidelites ul
-            $collectionHolderFidelite.append($addFideliteLink);
-
-            // count the current form inputs we have (e.g. 2), use that as the new
-            // index when inserting a new item (e.g. 2)
+            // compte le nombre de fidelite actuelles pour avoir l'index d'insertion
             $collectionHolderFidelite.data('index', $collectionHolderFidelite.find(':input').length + {{ form.fidelites|length }});
 
-            $addFideliteLink.on('click', function (e) {
-                // prevent the link from creating a "#" on the URL
-                e.preventDefault();
-
-                // add a new fidelite form (see next code block)
-                addFideliteForm($collectionHolderFidelite, $addFideliteLink);
+            $('#btnAjoutFidelite').on('click', function () {
+                // appelle la fonction d'ajout de fidélités
+                addFideliteForm($collectionHolderFidelite);
             });
         });
 
-        function addFideliteForm($collectionHolderFidelite, $addFideliteLink) {
-            // Get the data-prototype explained earlier
-            var prototype = $collectionHolderFidelite.data('prototype');
-
-            // get the new index
+        function addFideliteForm($collectionHolderFidelite) {
+            // Récupération de l'index courant
             var index = $collectionHolderFidelite.data('index');
 
-            // Replace '__name__' in the prototype's HTML to
-            // instead be a number based on how many items we have
+            // contrôle si la fidélité précédente contient un minimum de renseignements
+            if(index > 0 && $("#facture_fidelites_" + (index-1) + "_montant").val() == ""){
+                // ouvre la modal de la fidelite précédente
+                $('#btn_modif_facture_fidelites_' + (index-1)).click();
+                // arrête le processus d'ajout de fidelite
+                return;
+            }
+
+            // Récupération du prototype
+            var prototype = $collectionHolderFidelite.data('prototype');
+
+            // Remplace '__name__' dans le prototype par l'id courant
             var newForm = prototype.replace(/__name__/g, index);
 
-            // increase the index with one for the next item
+            // incrémente l'index de 1 pour la fidelite suivante
             $collectionHolderFidelite.data('index', index + 1);
 
-            // Display the form in the page in an li, before the "Add a fidelite" link li
+            // Ajoute la nouvelle fidelite
             $('#tblLignes').append(newForm);
+
+            // ouvre la modal de la nouvelle fidelite
+            $('#btn_modif_facture_fidelites_' + index).click();
         }
     </script>
 {% endblock %}

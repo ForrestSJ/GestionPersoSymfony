@@ -22,7 +22,7 @@
     </td>
     <td>
         <!-- Trigger the modal with a button -->
-        <button type="button" class="btn btn-warning btn-xs" data-toggle="modal" data-target="#modal_{{ form.vars.id }}">
+        <button id="btn_modif_{{ form.vars.id }}" type="button" class="btn btn-warning btn-xs" data-toggle="modal" data-target="#modal_{{ form.vars.id }}">
             Modifier
         </button>
         <button type="button" class="btn btn-danger btn-xs" onclick="$('#tr_{{ form.vars.id }}').remove()">
@@ -51,7 +51,7 @@
             </div>
         </div>
         <script type="text/javascript">
-            $('#modal_{{ form.vars.id }}').on('hidden.bs.modal', function (e) {
+            $('#modal_{{ form.vars.id }}').on('hidden.bs.modal', function () {
                 $('#display_{{ form.vars.id }}_compte').text($('#{{ form.vars.id }}_compte option:selected').text());
                 $('#display_{{ form.vars.id }}_montant').text($('#{{ form.vars.id }}_montant').val())
             });
