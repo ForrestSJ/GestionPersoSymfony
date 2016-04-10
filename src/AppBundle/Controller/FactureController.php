@@ -5,6 +5,7 @@ namespace AppBundle\Controller;
 use AppBundle\Entity\Facture;
 use AppBundle\Entity\FactureLigne;
 use AppBundle\Form\FactureType;
+use Doctrine\Common\Collections\ArrayCollection;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -45,10 +46,37 @@ class FactureController extends Controller
             $entityFacture = new Facture();
         }
 
+
+        // Crée une ArrayCollection de la liste des lignes en base de données
+        $originalLignes = new ArrayCollection();
+        foreach ($entityFacture->getLignes() as $ligne) {
+            $originalLignes->add($ligne);
+        }
+        // Crée une ArrayCollection de la liste des lignes de fidélité en base de données
+        $originalFidelites = new ArrayCollection();
+        foreach ($entityFacture->getFidelites() as $fidelite) {
+            $originalFidelites->add($fidelite);
+        }
+
         $form = $this->createForm(FactureType::class, $entityFacture);
 
         $form->handleRequest($request);
         if ($form->isValid()) {
+            // contrôle l'ensemble des lignes de bdd
+            foreach ($originalLignes as $ligne) {
+                if (false === $entityFacture->getLignes()->contains($ligne)) {
+                    // si la ligne correspondante n'a pas été envoyée au formulaire, on la supprime de la bdd
+                     $em->remove($ligne);
+                }
+            }
+            // contrôle l'ensemble des lignes de fidélité de bdd
+            foreach ($originalFidelites as $fidelite) {
+                if (false === $entityFacture->getFidelites()->contains($fidelite)) {
+                    // si la fidélité correspondante n'a pas été envoyée au formulaire, on la supprime de la bdd
+                     $em->remove($fidelite);
+                }
+            }
+
             try {
                 $em->persist($entityFacture);
                 $em->flush();
@@ -62,7 +90,7 @@ class FactureController extends Controller
             } catch (\Exception $e) {
                 $this->addFlash(
                     'danger-toastr',
-                    'Une erreur s\'est produite lors de l\'enregistrement'
+                    'Une erreur s\'est produite lors de l\'enregistrement : ' . $e
                 );
             }
         }

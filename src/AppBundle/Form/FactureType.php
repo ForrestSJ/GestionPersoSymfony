@@ -37,6 +37,7 @@ class FactureType extends AbstractType
             'entry_type' => FactureLigneType::class,
             'by_reference' => false,
             'allow_add' => true,
+            'allow_delete' => true,
         ));
 
         // ajout du formulaire de fidelites de facture
@@ -44,6 +45,7 @@ class FactureType extends AbstractType
             'entry_type' => FactureFideliteType::class,
             'by_reference' => false,
             'allow_add' => true,
+            'allow_delete' => true,
         ));
 
     }
