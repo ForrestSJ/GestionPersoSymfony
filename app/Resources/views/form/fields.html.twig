@@ -22,8 +22,11 @@
 
 {% block form_widget_datepicker -%}
     {% if type is not defined or 'file' != type %}
-        {%- set attr = attr|merge({class: (attr.class|default('') ~ ' form-control')|trim}) -%}
+        {%- set attr = attr|merge({class: (attr.class|default('') ~ ' form-control datepicker')|trim}) -%}
     {% endif %}
     {%- set type = type|default('text') -%}
-    <input type="{{ type }}" {{ block('widget_attributes') }} data-mask="" data-inputmask="'alias': 'dd/mm/yyyy'" {% if value is not empty %}value="{{ value }}" {% endif %}/>
+    <div class="input-group">
+        <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+        <input type="{{ type }}" {{ block('widget_attributes') }} data-mask="" data-inputmask="'alias': 'dd/mm/yyyy'" {% if value is not empty %}value="{{ value }}" {% endif %}/>
+    </div>
 {%- endblock form_widget_datepicker %}

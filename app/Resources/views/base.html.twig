@@ -12,6 +12,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.6 -->
     <link type="text/css" rel="stylesheet" href="{{ asset('bundles/app/extlib/bootstrap/css/bootstrap.min.css') }}" />
+    <!-- bootstrap-datepicker -->
+    <link type="text/css" rel="stylesheet" href="{{ asset('bundles/app/extlib/datepicker/datepicker3.css') }}" />
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
     <!-- Ionicons -->
@@ -406,6 +408,9 @@ desired effect
 <script type="text/javascript" src="{{ asset('bundles/app/extlib/jQuery/jQuery-2.2.0.min.js') }}"></script>
 <!-- Bootstrap 3.3.6 -->
 <script type="text/javascript" src="{{ asset('bundles/app/extlib/bootstrap/js/bootstrap.min.js') }}"></script>
+<!-- bootstrap-datepicker -->
+<script type="text/javascript" src="{{ asset('bundles/app/extlib/datepicker/bootstrap-datepicker.js') }}"></script>
+<script type="text/javascript" src="{{ asset('bundles/app/extlib/datepicker/locales/bootstrap-datepicker.fr.js') }}"></script>
 <!-- InputMask -->
 <script src="{{ asset('bundles/app/extlib/input-mask/jquery.inputmask.js') }}"></script>
 <script src="{{ asset('bundles/app/extlib/input-mask/jquery.inputmask.date.extensions.js') }}"></script>
@@ -422,7 +427,18 @@ desired effect
 {% block javascripts %}{% endblock %}
 <script type="text/javascript">
     $(document).ready(function(){
+        // initialisation des masques de saisie
         $(":input").inputmask();
+        // initialisation des datepicker
+        $('.datepicker').datepicker({
+            format: "dd/mm/yyyy",
+            weekStart: 1,
+            todayBtn: "linked",
+            language: "fr",
+            //orientation: "auto left",
+            autoclose: true,
+            todayHighlight: true
+        });
     });
 </script>
 </body>
