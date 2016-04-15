@@ -406,6 +406,10 @@ desired effect
 <script type="text/javascript" src="{{ asset('bundles/app/extlib/jQuery/jQuery-2.2.0.min.js') }}"></script>
 <!-- Bootstrap 3.3.6 -->
 <script type="text/javascript" src="{{ asset('bundles/app/extlib/bootstrap/js/bootstrap.min.js') }}"></script>
+<!-- InputMask -->
+<script src="{{ asset('bundles/app/extlib/input-mask/jquery.inputmask.js') }}"></script>
+<script src="{{ asset('bundles/app/extlib/input-mask/jquery.inputmask.date.extensions.js') }}"></script>
+<script src="{{ asset('bundles/app/extlib/input-mask/jquery.inputmask.extensions.js') }}"></script>
 <!-- AdminLTE App -->
 <script type="text/javascript" src="{{ asset('bundles/app/extlib/AdminLTE2/js/app.min.js') }}"></script>
 <!-- toastr 2.1.2 -->
@@ -416,5 +420,10 @@ desired effect
      user experience. Slimscroll is required when using the
      fixed layout. -->
 {% block javascripts %}{% endblock %}
+<script type="text/javascript">
+    $(document).ready(function(){
+        $(":input").inputmask();
+    });
+</script>
 </body>
 </html>
