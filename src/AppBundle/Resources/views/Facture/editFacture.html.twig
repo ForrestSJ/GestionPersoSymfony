@@ -48,11 +48,17 @@
     {{ form_widget(form.lignes) }}
     {{ form_widget(form.fidelites) }}
     {{ form_end(form) }}
-    <a href="{{ path('facture_liste') }}">retour</a>
+    <a href="{{ path('facture_liste') }}">retour</a><br>
+    <a href="{{ path('facture_create') }}">Ajouter facture</a><br>
 {% endblock %}
 
 {% block javascripts %}
     {{ parent() }}
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#{{ form.lieu.vars.id }}").focus();
+        })
+    </script>
     <script type="text/javascript">
         var $collectionHolderLigne;
 
