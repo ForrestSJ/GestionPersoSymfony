@@ -73,6 +73,13 @@ class Operation
      */
     private $commentaire;
 
+    /**
+     * @var \AppBundle\Entity\Categorie
+     *
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Categorie")
+     * @ORM\JoinColumn(name="categorieId", referencedColumnName="id", nullable=true)
+     */
+    private $categorie;
 
     /**
      * Get id
@@ -250,5 +257,29 @@ class Operation
     public function getCommentaire()
     {
         return $this->commentaire;
+    }
+
+    /**
+     * Set categorie
+     *
+     * @param \AppBundle\Entity\Categorie $categorie
+     *
+     * @return Operation
+     */
+    public function setCategorie(\AppBundle\Entity\Categorie $categorie = null)
+    {
+        $this->categorie = $categorie;
+
+        return $this;
+    }
+
+    /**
+     * Get categorie
+     *
+     * @return \AppBundle\Entity\Categorie
+     */
+    public function getCategorie()
+    {
+        return $this->categorie;
     }
 }

@@ -48,6 +48,15 @@ class OperationType extends AbstractType
                 'label' => 'Commentaire',
                 'required' => false
             ))
+            ->add('categorie', 'Symfony\Bridge\Doctrine\Form\Type\EntityType', array(
+                'class' => 'AppBundle\Entity\Categorie',
+                'choice_label' => 'designation',
+                'multiple' => false,
+                'required' => false,
+                'label' => 'Categorie',
+                'placeholder' => '-- Sélectionner une catégorie --',
+                'empty_data' => '',
+            ))
         ;
     }
 
