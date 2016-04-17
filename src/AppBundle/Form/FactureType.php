@@ -23,6 +23,8 @@ class FactureType extends AbstractType
             ->add('date', 'Symfony\Component\Form\Extension\Core\Type\DateType', array(
                 'label' => 'Date',
                 'widget' => 'single_text',
+                'input' => 'datetime',
+                'format' => 'dd/MM/yy',
                 'required' => true,
                 'attr' => array('oninvalid' => "toastr.error('date invalide')")
             ))

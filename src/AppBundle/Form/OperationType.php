@@ -20,6 +20,8 @@ class OperationType extends AbstractType
             ->add('date', 'Symfony\Component\Form\Extension\Core\Type\DateType', array(
                 'label' => 'Date',
                 'widget' => 'single_text',
+                'input' => 'datetime',
+                'format' => 'dd/MM/yy',
                 'required' => true
             ))
             ->add('montant', 'Symfony\Component\Form\Extension\Core\Type\MoneyType', array(
