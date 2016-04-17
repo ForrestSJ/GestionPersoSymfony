@@ -11,7 +11,14 @@
     {{ form_row(form.categorie) }}
     <input type="submit">
     {{ form_end(form) }}
-    <a href="{{ path('operation_liste') }}">retour</a>
-
+    <a href="{{ path('operation_liste') }}">retour</a><br>
+    <a href="{{ path('operation_create') }}">Ajouter opération</a><br>
 {% endblock %}
 
+{% block javascripts %}
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#{{ form.lieu.vars.id }}").focus();
+        })
+    </script>
+{% endblock %}
